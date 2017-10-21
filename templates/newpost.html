@@ -2,25 +2,25 @@
 
 {% block newpost %}
     <h1>Add A Blog Entry</h1>
-    <form method='post' action="/blog">
+    <form method='post' action="/validate_newpost">
         <table>
-            <tr>
+        <tr>
                 <td>
             <label>
                 Title for your Blog:</br>
                 <input type="text" name='title'/>
+                <p class="error">{{title_error}}</p>
             </label>
                 </td>
-            </tr>
             <tr>
                 <td>
                     <label>
-                            <br>Your New Blog:</br>
-                            <textarea name="body" rows="10" cols="50">
-                            </textarea>
+                            Your New Blog:</br>
+                            <textarea name="body" rows="10" cols="50"></textarea>
+                            <p class="error">{{body_error}}</p>
                     </label>
                </td>
-           </tr>
+            </tr>
            <tr>
                <td>
                     <input type="submit" value='Add Entry' />

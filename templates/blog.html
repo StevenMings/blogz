@@ -7,17 +7,10 @@
     {% if blogs|length == 0 %}
     <p>No entrys yet!</p>
     {% else %}
-
-        
-            {% for title in blogs %}
-            <h2>{{title.title}}</h2>
-            {% for body in bodys %}
-            <p>{{body.body}}</p>
-            {% endfor %}
-            {% endfor %}
-
-
-        
-
+        {% for blog in blogs %}
+        <h2>{{blog.title}}</h2>
+        <p>{{blog.body}}</p>
+        {% endfor %}
+    
     {% endif %}
 {% endblock %}
