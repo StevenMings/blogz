@@ -21,46 +21,42 @@ class Blog(db.Model):
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog_page():
-
-    if ['POST'] == True:
-                
+# if it is submitted by the post form 
+    if request.method == 'POST':
+        
         title_name = request.form['title']
         body_name = request.form['body']
-        new_entry = Blog(title_name, body_name)
-        db.session.add(new_entry)
-        db.session.commit()
+        if len(title_name) or len(body_name) > 0:
+            new_entry = Blog(title_name, body_name)
+            db.session.add(new_entry)
+            db.session.commit()
 
 
+        title = request.form['title']
+        body = request.form['body']
+
+        title_error=''
+        body_error=''
+
+# title_error
+        if len(title) == 0:
+            title_error = "You Must Enter a Title!"
+
+# body_error
+        if len(body) == 0:
+            body_error = "You Must Enter A Body!"
+
+        if not title_error and not body_error:
+            return redirect('/blog')
+        else:
+            return render_template('newpost.html', title_error=title_error, body_error=body_error)
+#if its not a Post then do this
     blogs = Blog.query.all()
-    
-
-    return render_template('blog.html', title="Its a Blog!", blogs=blogs)
+    return render_template('blog.html', titlebase="Its a Blog!", blogs=blogs)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
     return render_template('newpost.html', titlebase = 'New Blog Post!')
-
-
-@app.route('/validate_newpost', methods=['POST', 'GET'])
-def validate_newpost():
-    title = request.form['title']
-    body = request.form['body']
-
-    title_error=''
-    body_error=''
-
-#title
-    if len(title) == 0:
-        title_error = "You Must Enter a Title!"
-
-# body
-    if len(body) == 0:
-        body_error = "You Must Enter A Body!"
-
-    if not title_error and not body_error:
-        return redirect('/blog')
-    else:
-        return render_template('newpost.html', title_error=title_error, body_error=body_error)
 
 
 @app.route('/', methods=['POST', 'GET'])
