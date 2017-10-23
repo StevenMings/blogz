@@ -2,13 +2,13 @@
 
 {% block newpost %}
     <h1>Add A Blog Entry</h1>
-    <form method='post' action="/blog">
+    <form method='post' action="/newpost">
         <table>
         <tr>
                 <td>
             <label>
                 Title for your Blog:</br>
-                <input type="text" name='title'/>
+                <input type="text" name='title' value='{{title}}'/>
                 <p class="error">{{title_error}}</p>
             </label>
                 </td>
@@ -16,7 +16,7 @@
                 <td>
                     <label>
                             Your New Blog:</br>
-                            <textarea name="body" rows="10" cols="50"></textarea>
+                            <textarea name="body" rows="10" cols="50" value='{{body}}'></textarea>
                             <p class="error">{{body_error}}</p>
                     </label>
                </td>
