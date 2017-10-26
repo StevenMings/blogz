@@ -2,7 +2,11 @@
 
 {% block page %}
 
-        <h2>{{entry.title}}</h2>
+        <h1>{{entry.title}}</h1>
+        <hr>
         <p>{{entry.body}}<p>
+        <h6>Written by: <a href="/blog?user={{user.username}}">{{user.username}}</a></h6>
+
+        
 
 {% endblock %}

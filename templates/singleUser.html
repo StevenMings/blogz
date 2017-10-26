@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if blogs|length == 0 %}
+    <p>No entrys yet! Create a <a href="/newpost">new post</a> here.</p>
+    {% else %}
+        
+        {% for blog in blogs %}
+            
+            <h1><p></p><a href="/blog?id={{blog.id}}">{{blog.title}}</a></p></h1>
+            <p>{{blog.body}}</p>
+            <h6>Written by: <a href="/blog?user={{user.username}}">{{user.username}}</a></h6>
+            <hr>
+                      
+        
+
+        {% endfor %}
+        
+    {% endif %}
+
+{% endblock %}
